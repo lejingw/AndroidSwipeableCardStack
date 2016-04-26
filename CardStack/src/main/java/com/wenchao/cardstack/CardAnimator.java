@@ -39,7 +39,6 @@ public class CardAnimator{
 
     }
     private void setup(){
-        mLayoutsMap = new HashMap<View,RelativeLayout.LayoutParams>();
 
         for(View v : mCardCollection){
             //setup basic layout
@@ -60,11 +59,7 @@ public class CardAnimator{
 
         initLayout();
 
-        for (View v : mCardCollection){
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) v.getLayoutParams();
-            RelativeLayout.LayoutParams paramsCopy =  cloneParams(params);
-            mLayoutsMap.put(v, paramsCopy);
-        }
+        initLayoutMap();
 
         setupRemotes();
 
@@ -83,6 +78,15 @@ public class CardAnimator{
             scale(v, -(size - index - 1) * 5);
             move(v, index * mStackMargin, 0);
             v.setRotation(0);
+        }
+    }
+
+    private void initLayoutMap(){
+        mLayoutsMap = new HashMap<View,RelativeLayout.LayoutParams>();
+        for (View v : mCardCollection){
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) v.getLayoutParams();
+            RelativeLayout.LayoutParams paramsCopy =  cloneParams(params);
+            mLayoutsMap.put(v, paramsCopy);
         }
     }
 
@@ -258,6 +262,7 @@ public class CardAnimator{
     public void setStackMargin(int margin) {
         mStackMargin = margin;
         initLayout();
+        initLayoutMap();
     }
 
 

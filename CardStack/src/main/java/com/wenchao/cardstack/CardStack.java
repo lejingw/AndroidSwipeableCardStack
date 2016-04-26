@@ -95,7 +95,7 @@ public class CardStack extends RelativeLayout {
 
     public void setStackMargin(int margin){
         mCardAnimator.setStackMargin(margin);
-        mCardAnimator.initLayout();
+//        mCardAnimator.initLayout();
     }
 
     public void setContentResource(int res){
